@@ -44,6 +44,9 @@ public class ServiceConfig {
         return new OrderProductService(this.databaseService);
     }
 
+    @Bean
+    public ImgService getImgService(){return new ImgService(this.databaseService);}
+
 
 
 

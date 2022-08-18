@@ -8,6 +8,7 @@ import pl.britenet.campus.service.ProductService;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
 @RequestMapping ("/api/v1/product")
 
@@ -24,9 +25,9 @@ public class ProductController {
             return this.productService.getProduct(id);
         }
 
-        @GetMapping
-        public List<Product> getProduct() {
-            return this.productService.getProduct();
+        @GetMapping ("products")
+        public List<Product> getProducts() {
+            return this.productService.getProducts();
         }
 
         @PostMapping

@@ -5,6 +5,10 @@ import org.springframework.web.bind.annotation.*;
 import pl.britenet.campus.Service.AuthenticationService;
 import pl.britenet.campus.model.CustomerCredentials;
 import pl.britenet.campus.model.CustomerLoginData;
+import pl.britenet.campus.object.Customer;
+
+
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1/authentication")
 
@@ -16,14 +20,24 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
     }
 
-    @PostMapping
+    @PostMapping ("/login")
     public CustomerLoginData login(@RequestBody CustomerCredentials customerCredentials) {
-        return this.authenticationService.login(customerCredentials);
+        return this.authenticationService.
+                login(customerCredentials);
     }
 
     @GetMapping("/{customerToken}")
-    public boolean login(@PathVariable String customerToken) {
+    public boolean login(@PathVariable String customerToken, String email) {
         return this.authenticationService.isLogged(customerToken);
+
     }
-}
+
+    @PostMapping ("register")
+    public void register(@RequestBody Customer customer) {
+        this.authenticationService.register(customer);
+    }
+
+
+    }
+
 
